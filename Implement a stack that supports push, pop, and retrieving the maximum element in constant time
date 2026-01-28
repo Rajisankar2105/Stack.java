@@ -1,0 +1,46 @@
+import java.util.Stack;
+public class MaxStack{
+    Stack<Integer>stack;
+    Stack<Integer>maxStack;
+    MaxStack(){
+        stack=new Stack<>();
+        maxStack=new Stack<>();
+    }
+    void push(int x){
+        stack.push(x);
+        if(maxStack.isEmpty()||x<=maxStack.peek()){
+            maxStack.push(x);
+        }
+    }
+    void pop(){
+        if(stack.isEmpty()){
+            System.out.println("Stack is empty");
+            return;
+        }
+        int removed=stack.pop();
+        if(removed==maxStack.peek()){
+            maxStack.pop();
+        }
+    }
+    int getMax(){
+        if(maxStack.isEmpty()){
+            System.out.println("Stack is empty");
+            return-1;
+        }
+        return maxStack.peek();
+    }
+    void display(){
+        System.out.println("Stack:"+stack);
+        System.out.println("Maxium :"+getMax());
+    }
+    public static void main(String[]args){
+        MaxStack ms=new MaxStack();
+        ms.push(5);
+        ms.push(2);
+        ms.push(8);
+        ms.push(1);
+        ms.display();
+        ms.pop();
+        ms.display();
+    }
+}
